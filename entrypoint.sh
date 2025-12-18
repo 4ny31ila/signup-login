@@ -2,10 +2,10 @@
 
 # Wait for the database to be ready
 echo "Waiting for PostgreSQL..."
-while ! nc -z db 5432; do
-  sleep 0.1
+while ! pg_isready -h db -p 5432 -q -U "user"; do
+  sleep 1
 done
-echo "PostgreSQL started"
+echo "PostgreSQL is ready"
 
 # Run database migrations
 echo "Initializing the database..."

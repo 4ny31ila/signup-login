@@ -9,6 +9,7 @@ services:
       - db
     networks:
       - app-network
+    restart: unless-stopped
 
   db:
     image: postgres:13
@@ -18,6 +19,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     networks:
       - app-network
+    restart: unless-stopped
 
   nginx:
     build: ./nginx
@@ -27,6 +29,7 @@ services:
       - app
     networks:
       - app-network
+    restart: unless-stopped
 
 networks:
   app-network:
