@@ -1,11 +1,11 @@
 # Use an official lightweight Python image.
-FROM python:3.9-slim
+FROM python:latest
 
 # Set the working directory in the container.
 WORKDIR /app
 
-# Install netcat
-RUN apt-get update && apt-get install -y netcat-openbsd
+# Install postgresql-client
+RUN apt-get update && apt-get install -y postgresql-client
 
 # Copy the requirements file and install dependencies.
 COPY requirements.txt .
