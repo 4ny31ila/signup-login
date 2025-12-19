@@ -1,5 +1,7 @@
 SQLAlchemy
 psycopg2-binary
 PyJWT
-passlib[bcrypt]
+passlib
 Werkzeug
+bcrypt==3.2.2
+gunicorn
