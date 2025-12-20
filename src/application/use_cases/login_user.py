@@ -5,7 +5,7 @@ from src.domain.user_repository import UserRepository
 from passlib.context import CryptContext
 
 # Load the secret key from an environment variable for security
-JWT_SECRET = os.environ.get("JWT_SECRET", "a_default_secret_for_development")
+SECRET_KEY = os.environ.get("SECRET_KEY", "a_default_secret_for_development")
 
 class LoginUserUseCase:
     def __init__(self, user_repository: UserRepository):
@@ -23,6 +23,6 @@ class LoginUserUseCase:
             "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)
         }
 
-        token = jwt.encode(payload, JWT_SECRET, algorithm="HS256")
+        token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
 
         return token
