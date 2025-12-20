@@ -7,7 +7,7 @@ from werkzeug.exceptions import HTTPException, NotFound, Unauthorized
 
 # We will need these use cases for our handlers
 from src.application.use_cases.register_user import RegisterUserUseCase
-from src.application.use_cases.login_user import LoginUserUseCase, JWT_SECRET
+from src.application.use_cases.login_user import LoginUserUseCase, SECRET_KEY
 from src.application.use_cases.get_user_profile import GetUserProfileUseCase
 from src.application.use_cases.update_password import UpdatePasswordUseCase
 from src.application.use_cases.delete_user import DeleteUserUseCase
@@ -22,7 +22,7 @@ def login_required(f):
 
         token = auth_header.split(' ')[1]
         try:
-            payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+            payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
             request.user_id = payload['sub']
         except jwt.ExpiredSignatureError:
             return Response(json.dumps({'error': 'Token has expired'}), status=401, mimetype='application/json')
